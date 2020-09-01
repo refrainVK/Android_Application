@@ -8,9 +8,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 class PostUtils {
-    public static String LOGIN_URL = "http://172.16.2.54:8080/HttpTest/ServletForPost";
+    public static String LOGIN_URL = "http://baseserver-env.eba-cy7qyyst.us-east-1.elasticbeanstalk.com/register";
 
-    public static String LoginByPost(String number, String passwd) {
+    public static String RegisterByPost(String number, String passwd) {
         String msg = "";
         try {
             HttpURLConnection conn = (HttpURLConnection) new URL(LOGIN_URL).openConnection();
@@ -24,7 +24,7 @@ class PostUtils {
             // set cache to be false
             conn.setUseCaches(false);
             // 我们请求的数据:
-            String data = "passwd=" + URLEncoder.encode(passwd, "UTF-8") + "&number=" + URLEncoder.encode(number, "UTF-8");
+            String data = "username=" + URLEncoder.encode(number, "UTF-8") + "&password=" + URLEncoder.encode(passwd, "UTF-8");
             // 这里可以写一些请求头的东东...
             // 获取输出流
             OutputStream out = conn.getOutputStream();
@@ -56,4 +56,5 @@ class PostUtils {
         }
         return msg;
     }
+
 }
