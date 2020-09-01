@@ -1,5 +1,7 @@
 package com.example.myapplication.data.controller;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -56,5 +58,9 @@ class PostUtils {
         }
         return msg;
     }
-
+    @Test
+    public void registerByPost() {
+        System.out.println("Hello");
+        System.out.println(PostUtils.RegisterByPost("testPostRegister", "123444"));
+    }
 }

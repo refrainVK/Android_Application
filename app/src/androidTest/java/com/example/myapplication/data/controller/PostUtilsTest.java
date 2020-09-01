@@ -13,6 +13,7 @@ public class PostUtilsTest {
 
     @Test
     public void registerByPost() {
+        System.out.println("Hello");
         System.out.println(PostUtils.RegisterByPost("testPostRegister", "123444"));
     }
 }
