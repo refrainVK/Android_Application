@@ -1,0 +1,22 @@
+
+POST
+
+{
+    username: xxxxx
+    password: xxxxx
+}
+/register
+
+Success
+{
+    code: 100
+    message: success
+    data:
+}
+
+Error
+{
+    code: xxx
+    message: xxx
+    data: null
+}

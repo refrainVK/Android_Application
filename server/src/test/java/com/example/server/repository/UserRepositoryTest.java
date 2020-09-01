@@ -26,4 +26,14 @@ class UserRepositoryTest {
         log.info("[found user] {}", found);
         assertNotNull(found);
     }
+
+    @Test
+    void testSave() {
+        User user = new User();
+        user.setPassword("123456");
+        user.setUsername("testusername");
+        User saved = repository.save(user);
+        log.info("[save] {}", saved);
+        assertNotNull(saved);
+    }
 }
