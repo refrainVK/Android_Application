@@ -15,14 +15,15 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password) {
 
         try {
-            LoggedInUser user = new LoggedInUser(password.toString(),username);
-            JSONObject msg = PostUtils.RegisterByPost(username, password);
+            LoggedInUser user = new LoggedInUser(password.toString(), username);
+            PostUtils.RegisterByPost(username, password);
 
-            if (msg.get("code").equals(200)) {
-                return new Result.Success<>(user);
-            } else {
-                return new Result.Error(new IOException("Error register in"));
-            }
+//            if (msg.get("code").equals(100)) {
+//                return new Result.Success<>(user);
+//            } else {
+//                return new Result.Error(new IOException("Error happens"));
+//            }
+            return new Result.Success<>(user);
 
         } catch (Exception e) {
             return new Result.Error(new IOException("Error register in", e));
