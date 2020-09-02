@@ -1,6 +1,9 @@
 package com.example.myapplication.data;
 
+import android.util.JsonReader;
+import com.example.myapplication.data.controller.PostUtils;
 import com.example.myapplication.data.model.LoggedInUser;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -12,12 +15,17 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password) {
 
         try {
-            // TODO: handle loggedInUser authentication
-            LoggedInUser user =
-                    new LoggedInUser(password.toString(),username);
-            return new Result.Success<>(user);
+            LoggedInUser user = new LoggedInUser(password.toString(),username);
+            JSONObject msg = PostUtils.RegisterByPost(username, password);
+
+            if (msg.get("code").equals(200)) {
+                return new Result.Success<>(user);
+            } else {
+                return new Result.Error(new IOException("Error register in"));
+            }
+
         } catch (Exception e) {
-            return new Result.Error(new IOException("Error logging in", e));
+            return new Result.Error(new IOException("Error register in", e));
         }
     }
 

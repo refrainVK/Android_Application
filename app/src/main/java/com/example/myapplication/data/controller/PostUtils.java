@@ -1,5 +1,8 @@
 package com.example.myapplication.data.controller;
 
+import android.util.Log;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -9,10 +12,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-class PostUtils {
+public class PostUtils {
     public static String LOGIN_URL = "http://baseserver-env.eba-cy7qyyst.us-east-1.elasticbeanstalk.com/register";
 
-    public static String RegisterByPost(String number, String passwd) {
+    public static JSONObject RegisterByPost(String number, String passwd) {
         String msg = "";
         try {
             HttpURLConnection conn = (HttpURLConnection) new URL(LOGIN_URL).openConnection();
@@ -51,16 +54,23 @@ class PostUtils {
                 message.close();
                 // 返回字符串
                 msg = new String(message.toByteArray());
-                return msg;
+                JSONObject jsonMsg = null;
+                try {
+                    jsonMsg = new JSONObject(msg);
+                }catch (JSONException err){
+                    Log.d("Error", err.toString());
+                }
+                return jsonMsg;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return msg;
+        return null;
     }
-    @Test
-    public void registerByPost() {
-        System.out.println("Hello");
-        System.out.println(PostUtils.RegisterByPost("testPostRegister", "123444"));
-    }
+//    @Test
+//    public void registerByPost() throws Exception {
+//        System.out.println("Hello");
+//        JSONObject msg = PostUtils.RegisterByPost("testPostRegister", "123444");
+//        System.out.println(msg.get("code").getClass());
+//    }
 }
