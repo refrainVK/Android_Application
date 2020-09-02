@@ -3,7 +3,6 @@ package com.example.myapplication.data.controller;
 import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
